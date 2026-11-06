@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Public+Sans:wght@400;500;600&display=swap');
+
+/* ---------- Tokens ---------- */
+:root {
+    --ink: #1c2140;          /* deep indigo: header, headings */
+    --ink-soft: #4a5072;     /* secondary text */
+    --paper: #eef1f7;        /* page background */
+    --surface: #ffffff;      /* cards */
+    --line: #d9deea;         /* borders */
+    --line-strong: #b8c0d4;
+    --pencil: #f5b82e;       /* accent: primary actions */
+    --pencil-dark: #dba015;
+    --ok-bg: #e3f4ea;
+    --ok-ink: #14532d;
+    --ok-bar: #22a05a;
+    --err-bg: #fbe7e5;
+    --err-ink: #8c1d18;
+    --err-bar: #d33a30;
+    --radius-sm: 6px;
+    --radius-lg: 12px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Public Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    background: var(--paper);
+    color: var(--ink);
+}
+
+/* ---------- Layout ---------- */
+.container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 28px 16px 56px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    background: var(--ink);
+    color: #fff;
+    padding: 18px 24px;
+    border-radius: var(--radius-lg);
+    margin-bottom: 24px;
+}
+
+h1, h2 {
+    font-family: 'Bricolage Grotesque', 'Public Sans', sans-serif;
+    letter-spacing: -0.01em;
+}
+
+h1 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 800;
+}
+
+h2 {
+    margin: 0 0 16px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* ---------- Cards ---------- */
+.card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+/* ---------- Forms ---------- */
+label {
+    display: block;
+    margin: 16px 0 6px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink);
+}
+
+input {
+    width: 100%;
+    padding: 10px 12px;
+    font: inherit;
+    color: var(--ink);
+    background: #fff;
+    border: 1.5px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+}
+
+input::placeholder { color: #98a0bb; }
+
+input:focus-visible {
+    outline: none;
+    border-color: var(--ink);
+    box-shadow: 0 0 0 3px rgba(245, 184, 46, 0.55);
+}
+
+.field-error {
+    color: var(--err-ink);
+    font-size: 13px;
+    font-weight: 500;
+    margin: 6px 0 0;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+    padding: 9px 16px;
+    font: inherit;
+    font-weight: 600;
+    color: var(--ink);
+    background: #fff;
+    border: 1.5px solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background-color 0.15s, border-color 0.15s;
+}
+
+.btn:hover { background: #f4f6fb; border-color: var(--ink-soft); }
+
+.btn:focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 2px;
+}
+
+.btn.primary {
+    background: var(--pencil);
+    border-color: var(--pencil);
+    color: var(--ink);
+}
+
+.btn.primary:hover {
+    background: var(--pencil-dark);
+    border-color: var(--pencil-dark);
+}
+
+.btn.danger {
+    background: #fff;
+    color: var(--err-ink);
+    border-color: var(--err-bar);
+}
+
+.btn.danger:hover {
+    background: var(--err-bar);
+    color: #fff;
+}
+
+.actions { display: flex; gap: 8px; margin-top: 20px; }
+td.actions { margin-top: 0; }
+.add-btn { margin-bottom: 20px; }
+
+/* header buttons sit on the dark bar */
+header .btn {
+    background: transparent;
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.45);
+}
+
+header .btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #fff;
+}
+
+/* ---------- Table ---------- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: left;
+    padding: 12px 14px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--line);
+}
+
+th {
+    font-weight: 600;
+    color: var(--ink-soft);
+    background: #f6f8fc;
+    border-bottom: 2px solid var(--line-strong);
+}
+
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: #f8f9fd; }
+
+/* ---------- Feedback ---------- */
+.banner {
+    padding: 13px 16px;
+    border-radius: var(--radius-sm);
+    border-left: 5px solid;
+    margin-bottom: 20px;
+    font-weight: 500;
+    animation: banner-in 0.25s ease-out;
+}
+
+.banner.success { background: var(--ok-bg); color: var(--ok-ink); border-color: var(--ok-bar); }
+.banner.error   { background: var(--err-bg); color: var(--err-ink); border-color: var(--err-bar); }
+
+@keyframes banner-in {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: none; }
+}
+
+/* ---------- User info ---------- */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+}
+
+.badge {
+    background: var(--pencil);
+    color: var(--ink);
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 700px) {
+    header { padding: 16px; }
+    .card { padding: 18px; }
+    table { display: block; overflow-x: auto; white-space: nowrap; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .banner { animation: none; }
+    .btn { transition: none; }
+}
